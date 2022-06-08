@@ -5,12 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Taschenrechner"
         mc:Ignorable="d"
-        Title="Taschenrechner" Height="400" Width="500" Icon="/Resources/APPIcon.ico" Background="White" BorderBrush="White" OpacityMask="Black" WindowStyle="None" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp" >
-    <Window.InputBindings>
-        <KeyBinding Gesture="Multiply" Command="{Binding OnClickKeyCode}" />
-        <KeyBinding Gesture="Divide" Command="{Binding OnClickKeyCode}" Key="Divide" />
-
-    </Window.InputBindings>
+        Title="Taschenrechner" Height="400" Width="500" Icon="/Resources/APPIcon.ico" Background="White" BorderBrush="White" OpacityMask="Black" WindowStyle="None" KeyDown="Window_KeyDown" >
+    
     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>

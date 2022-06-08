@@ -22,18 +22,14 @@ namespace Taschenrechner
     /// </summary>
     public partial class MainWindow : Window
     {
-        //Логирование событий
+        //Логгирование событий
         static readonly Logger logger = LogManager.GetCurrentClassLogger();
-        bool keycode = false;
-        public KeyGesture Multiply;
-        public KeyGesture Divide;
-        public KeyGesture Result;
-
 
         public MainWindow()
         {
             LogManager.Setup().LoadConfiguration(builder => {
-                builder.ForLogger().FilterMinLevel(LogLevel.Debug).WriteToConsole("${longdate} ${level} ${message} ${exception} ");
+                builder.ForLogger().FilterLevel(LogLevel.Info).WriteToConsole("${longdate} ${level} ${message} ${exception} ");
+                builder.ForLogger().FilterMinLevel(LogLevel.Error).WriteToFile("${basedir}/logs/${shortdate}.log", "${longdate} ${level} ${message} ${exception} ");
             });
             InitializeComponent();
             
@@ -99,44 +95,59 @@ namespace Taschenrechner
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            string[] Symbols = new string[] { "OemMinus", "OemPlus" };
+            string[] Symbols = new string[] { "Add", "Subtract", "Divide", "Multiply"};
             string str = e.Key.ToString();
-            if (char.IsDigit(str[1]))
-            {
-                textLabel.Text += str[1];
-            }
 
-            if (keycode & Symbols.Contains(str))
+            foreach(var ch in str)
             {
+                if (char.IsDigit(ch))
+                {
+                    logger.Info("Нажатие на кнопку клавиатуры: " + ch);
+
+                    textLabel.Text += ch;
+                }
+            }         
+
+            
+            if(Symbols.Contains(str))
+            {
+                logger.Info("Нажатие на кнопку клавиатуры: " + str);
+
                 switch (str)
                 {
-                    
+                    case "Add":
+                        textLabel.Text += '+';
+                        break;
+                    case "Subtract":
+                        textLabel.Text += '-';
+                        break;
+                    case "Multiply":
+                        textLabel.Text += '*';
+                        break;
+                    case "Divide":
+                        textLabel.Text += '/';
+                        break;
+                }
+            }   
+            if(e.Key == Key.Enter)
+            {
+                try
+                {
+                    logger.Info("Нажатие на кнопку клавиатуры: Enter");
+
+                    string value = new DataTable().Compute(textLabel.Text, null).ToString();
+                    textLabel.Text = value;
+                }
+                catch (Exception ex)
+                {
+                    logger.Error(ex.ToString());
                 }
             }
-            else if(Symbols.Contains(str))
+            if(e.Key == Key.Back)
             {
-                textLabel.Text += str;
+                logger.Info("Нажатие на кнопку клавиатуры: Backspace");
+                textLabel.Text = "";
             }
-
-
-            if (e.Key == Key.LeftShift)
-            {
-                keycode = true;
-            }
-            
-        }
-
-        private void Window_KeyUp(object sender, KeyEventArgs e)
-        {            
-            if (e.Key == Key.LeftShift)
-            {
-                keycode = false;
-            }
-        }
-
-        private void OnClickKeyCode(object sender, RoutedEventArgs e)
-        {
-
         }
 
         //private void Button2_Click(object sender, RoutedEventArgs e)
