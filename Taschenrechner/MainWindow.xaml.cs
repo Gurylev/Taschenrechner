@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Taschenrechner.Logger;
+using NLog;
 
 namespace Taschenrechner
 {
@@ -22,10 +22,23 @@ namespace Taschenrechner
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Логирование событий
+        static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        bool keycode = false;
+        public KeyGesture Multiply;
+        public KeyGesture Divide;
+        public KeyGesture Result;
+
+
         public MainWindow()
         {
+            LogManager.Setup().LoadConfiguration(builder => {
+                builder.ForLogger().FilterMinLevel(LogLevel.Debug).WriteToConsole("${longdate} ${level} ${message} ${exception} ");
+            });
             InitializeComponent();
-            using (_ = new EventLogger("Info", "Приложение запущено!")) ;
+            
+            logger.Info("Приложение запущено!");
+
             #region Инициализация всех кнопок
             foreach (UIElement el in Normal.Children)
             {
@@ -43,12 +56,16 @@ namespace Taschenrechner
             //    }
             //}
             #endregion
-
+            KeyGesture Multiply = new KeyGesture(Key.Oem8, ModifierKeys.Shift);
+            KeyGesture Divide = new KeyGesture(Key.OemQuestion, ModifierKeys.Shift);
+            KeyGesture Result = new KeyGesture(Key.OemPlus, ModifierKeys.Shift);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string str = (string)((Button)e.OriginalSource).Content;
+
+            logger.Info("Нажатие на кнопку: " + str);
 
             if (str == "AC")
                 textLabel.Text = "";
@@ -61,16 +78,65 @@ namespace Taschenrechner
                 }
                 catch (Exception ex)
                 {
-                    using (_ = new EventLogger("Debug", ex.ToString()));
+                    logger.Error(ex.ToString());
                 }
             }
             else
                 textLabel.Text += str;
         }
 
+
+
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            string[] Symbols = new string[] { "OemMinus", "OemPlus" };
+            string str = e.Key.ToString();
+            if (char.IsDigit(str[1]))
+            {
+                textLabel.Text += str[1];
+            }
+
+            if (keycode & Symbols.Contains(str))
+            {
+                switch (str)
+                {
+                    
+                }
+            }
+            else if(Symbols.Contains(str))
+            {
+                textLabel.Text += str;
+            }
+
+
+            if (e.Key == Key.LeftShift)
+            {
+                keycode = true;
+            }
+            
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {            
+            if (e.Key == Key.LeftShift)
+            {
+                keycode = false;
+            }
+        }
+
+        private void OnClickKeyCode(object sender, RoutedEventArgs e)
+        {
+
         }
 
         //private void Button2_Click(object sender, RoutedEventArgs e)

@@ -5,16 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Taschenrechner"
         mc:Ignorable="d"
-        Title="Taschenrechner" Height="400" Width="500" Icon="/Resources/APPIcon.ico" WindowStyle="None" Background="White" BorderBrush="White" OpacityMask="Black" >
-    <Grid>
-        <Grid.RowDefinitions>            
+        Title="Taschenrechner" Height="400" Width="500" Icon="/Resources/APPIcon.ico" Background="White" BorderBrush="White" OpacityMask="Black" WindowStyle="None" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp" >
+    <Window.InputBindings>
+        <KeyBinding Gesture="Multiply" Command="{Binding OnClickKeyCode}" />
+        <KeyBinding Gesture="Divide" Command="{Binding OnClickKeyCode}" Key="Divide" />
+
+    </Window.InputBindings>
+    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Label HorizontalAlignment="Left" FontSize="15" FontWeight="Bold" FontFamily="Verdana">Taschenrechne</Label>
+        <Label HorizontalAlignment="Left" FontSize="15" FontWeight="Bold" FontFamily="Verdana">Калькулятор</Label>
         <Button Grid.Row="0" x:Name="Close" Margin="450,0,0,0" Height="30" Width="30" Panel.ZIndex="100" Click="Close_Click" Foreground="Red">X</Button>
         <TabControl Grid.Row="1">
-            <TabItem Header="Обычный" Height="30">
+            <TabItem Header="Обычный" Height="30" FontWeight="Bold">
                 <Grid x:Name="Normal">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100"/>
