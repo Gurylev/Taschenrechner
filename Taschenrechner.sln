@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taschenrechner", "Taschenrechner\Taschenrechner.csproj", "{21A25126-490B-4C4A-AE87-C6B7C731A2FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taschenrechner", "Taschenrechner\Taschenrechner.csproj", "{21A25126-490B-4C4A-AE87-C6B7C731A2FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EngineerMode", "EngineerMode\EngineerMode.csproj", "{CDF7C474-8ED0-4D91-B00A-F031F3CDA27E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{21A25126-490B-4C4A-AE87-C6B7C731A2FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21A25126-490B-4C4A-AE87-C6B7C731A2FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21A25126-490B-4C4A-AE87-C6B7C731A2FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDF7C474-8ED0-4D91-B00A-F031F3CDA27E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDF7C474-8ED0-4D91-B00A-F031F3CDA27E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDF7C474-8ED0-4D91-B00A-F031F3CDA27E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDF7C474-8ED0-4D91-B00A-F031F3CDA27E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
