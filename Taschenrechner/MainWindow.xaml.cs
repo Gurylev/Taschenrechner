@@ -52,9 +52,6 @@ namespace Taschenrechner
             //    }
             //}
             #endregion
-            KeyGesture Multiply = new KeyGesture(Key.Oem8, ModifierKeys.Shift);
-            KeyGesture Divide = new KeyGesture(Key.OemQuestion, ModifierKeys.Shift);
-            KeyGesture Result = new KeyGesture(Key.OemPlus, ModifierKeys.Shift);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
