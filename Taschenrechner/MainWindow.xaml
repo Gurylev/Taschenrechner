@@ -49,7 +49,7 @@
                     <Button Grid.Column="2" Grid.Row="4" >AC</Button>
                 </Grid>
             </TabItem>
-            <!--<TabItem Header="Инженерный">
+            <!--<TabItem Header="Инженерный" Height="30" FontWeight="Bold">
                 <Grid x:Name="Engineer" Background="White"  >
                     <Grid.RowDefinitions>
                         <RowDefinition />

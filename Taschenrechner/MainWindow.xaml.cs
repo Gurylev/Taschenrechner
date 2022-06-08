@@ -85,6 +85,7 @@ namespace Taschenrechner
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
+            logger.Info("Приложение закрывается!");
             this.Close();
         }
 
