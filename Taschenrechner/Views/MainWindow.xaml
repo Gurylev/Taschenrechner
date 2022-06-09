@@ -1,4 +1,4 @@
-﻿<Window x:Class="Taschenrechner.MainWindow"
+﻿<Window x:Class="Taschenrechner.Views.MainWindow"
         x:Name="MainWindowInstance"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,32 +6,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:Taschenrechner.VModels"
         xmlns:view="clr-namespace:Taschenrechner.Views"
+        xmlns:local="clr-namespace:Taschenrechner"
         mc:Ignorable="d"
-        Title="Taschenrechner" Height="400" Width="500" Icon="/Resources/APPIcon.ico" Background="White" BorderBrush="White" OpacityMask="Black" WindowStyle="None" WindowStartupLocation="CenterScreen"
-        DataContext="{Binding MainVM, ElementName=MainWindowInstance}">
-    <Window.Resources>
-        <viewModel:MainVM x:Key="MainViewModel"/>
-    </Window.Resources>
-
-
+        Title="Taschenrechner" Height="400" Width="500" Icon="/Resources/APPIcon.ico" Background="White" BorderBrush="White" OpacityMask="Black" WindowStyle="None" WindowStartupLocation="CenterScreen" >
+    
+    <Window.DataContext>
+        <viewModel:MainWindowVM/>
+    </Window.DataContext>
+   
     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <Label HorizontalAlignment="Left" FontSize="15" FontWeight="Bold" FontFamily="Verdana">Калькулятор</Label>
-        <Button Grid.Row="0" x:Name="Close" Margin="450,0,0,0" Height="30" Width="30" Panel.ZIndex="100" Click="Close_Click" Foreground="Red">X</Button>
-        <TabControl ItemsSource="{Binding TabItems}" SelectedItem="{Binding SelectedTab}" Grid.Row="1">
-            <TabControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding TabName}"/>
-                </DataTemplate>
-            </TabControl.ItemTemplate>
-            <TabControl.ContentTemplate>
-                <DataTemplate>
+        <Button Grid.Row="0" x:Name="Close" Margin="450,0,0,0" Height="30" Width="30" Panel.ZIndex="100" Foreground="Red">X</Button>
+        <TabControl ItemsSource="{Binding Tabs}" Grid.Row="1">
+            <TabControl.Resources>
+                <DataTemplate DataType="{x:Type viewModel:NormalTabVM}">
                     <view:Normal/>
                 </DataTemplate>
-            </TabControl.ContentTemplate>
+            </TabControl.Resources>
+            <TabControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type viewModel:TabVM}">
+                    <TextBlock Text="{Binding Header}"/>
+                </DataTemplate>
+            </TabControl.ItemTemplate>            
+            
             <!--<TabItem x:Name="TabElementNorm"  Header="Обычный" Height="30" FontWeight="Bold">
                 <Grid x:Name="Normal">
                     <Grid.RowDefinitions>

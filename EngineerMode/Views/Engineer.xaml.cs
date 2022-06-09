@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EngineerMode
+namespace EngineerMode.Views
 {
     /// <summary>
     /// Логика взаимодействия для Engineer.xaml
