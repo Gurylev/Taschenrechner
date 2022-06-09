@@ -13,16 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EngineerMode
+namespace Taschenrechner.Views
 {
     /// <summary>
-    /// Логика взаимодействия для EngineerTab.xaml
+    /// Логика взаимодействия для Normal.xaml
     /// </summary>
-    public partial class EngineerTab : UserControl
+    public partial class Normal : UserControl
     {
-        public EngineerTab()
+        public Normal()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
     }
 }

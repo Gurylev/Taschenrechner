@@ -1,14 +1,19 @@
 ﻿<Window x:Class="Taschenrechner.MainWindow"
+        x:Name="MainWindowInstance"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Taschenrechner.VModels"
+        xmlns:viewModel="clr-namespace:Taschenrechner.VModels"
+        xmlns:view="clr-namespace:Taschenrechner.Views"
         mc:Ignorable="d"
-        Title="Taschenrechner" Height="400" Width="500" Icon="/Resources/APPIcon.ico" Background="White" BorderBrush="White" OpacityMask="Black" WindowStyle="None" KeyDown="Window_KeyDown" WindowStartupLocation="CenterScreen" >
-    <Window.DataContext>
-        <local:MainVM/>
-    </Window.DataContext>
+        Title="Taschenrechner" Height="400" Width="500" Icon="/Resources/APPIcon.ico" Background="White" BorderBrush="White" OpacityMask="Black" WindowStyle="None" WindowStartupLocation="CenterScreen"
+        DataContext="{Binding MainVM, ElementName=MainWindowInstance}">
+    <Window.Resources>
+        <viewModel:MainVM x:Key="MainViewModel"/>
+    </Window.Resources>
+
+
     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -16,8 +21,18 @@
         </Grid.RowDefinitions>
         <Label HorizontalAlignment="Left" FontSize="15" FontWeight="Bold" FontFamily="Verdana">Калькулятор</Label>
         <Button Grid.Row="0" x:Name="Close" Margin="450,0,0,0" Height="30" Width="30" Panel.ZIndex="100" Click="Close_Click" Foreground="Red">X</Button>
-        <TabControl x:Name="Tab" Grid.Row="1">
-            <TabItem x:Name="TabElementNorm"  Header="Обычный" Height="30" FontWeight="Bold">
+        <TabControl ItemsSource="{Binding TabItems}" SelectedItem="{Binding SelectedTab}" Grid.Row="1">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding TabName}"/>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <view:Normal/>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+            <!--<TabItem x:Name="TabElementNorm"  Header="Обычный" Height="30" FontWeight="Bold">
                 <Grid x:Name="Normal">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100"/>
@@ -32,7 +47,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="" Grid.ColumnSpan="4" x:Name="textLabel" Style="{StaticResource text}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding expression, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="4" x:Name="textLabel" Style="{StaticResource text}"/>
                     <Button Grid.Column="0" Grid.Row="1" >1</Button>
                     <Button Grid.Column="1" Grid.Row="1" >2</Button>
                     <Button Grid.Column="2" Grid.Row="1" >3</Button>
@@ -50,7 +65,7 @@
                     <Button Grid.Column="1" Grid.Row="4" >=</Button>
                     <Button Grid.Column="2" Grid.Row="4" >AC</Button>
                 </Grid>
-            </TabItem>
+            </TabItem>-->
             <!--<TabItem Header="Инженерный" Height="30" FontWeight="Bold">
                 <Grid x:Name="Engineer" Background="White"  >
                     <Grid.RowDefinitions>
