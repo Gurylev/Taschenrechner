@@ -27,8 +27,9 @@ namespace Taschenrechner
 
         public MainWindow()
         {
+            //Конфигурирование NLog
             LogManager.Setup().LoadConfiguration(builder => {
-                builder.ForLogger().FilterLevel(LogLevel.Info).WriteToConsole("${longdate} ${level} ${message} ${exception} ");
+                builder.ForLogger().FilterLevel(LogLevel.Info).WriteToConsole("${longdate} ${level} ${message}");
                 builder.ForLogger().FilterMinLevel(LogLevel.Error).WriteToFile("${basedir}/logs/${shortdate}.log", "${longdate} ${level} ${message} ${exception} ");
             });
 
@@ -37,6 +38,7 @@ namespace Taschenrechner
             logger.Info("Приложение запущено!");
 
             #region Инициализация всех кнопок
+
             foreach (UIElement el in Normal.Children)
             {
                 if (el is Button)
@@ -52,9 +54,15 @@ namespace Taschenrechner
             //        ((Button)el2).Click += Button2_Click;
             //    }
             //}
+
             #endregion
         }
 
+        /// <summary>
+        /// Нажатие на кнопки интерфейса калькулятора
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string str = (string)((Button)e.OriginalSource).Content;
@@ -80,25 +88,17 @@ namespace Taschenrechner
                 textLabel.Text += str;
         }
 
-
-
-        private void Close_Click(object sender, RoutedEventArgs e)
-        {
-            logger.Info("Приложение закрывается!");
-            this.Close();
-        }
-
-        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
-
+        /// <summary>
+        /// Ввод с клавиатуры
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            string[] Symbols = new string[] { "Add", "Subtract", "Divide", "Multiply"};
+            string[] Symbols = new string[] { "Add", "Subtract", "Divide", "Multiply" };
             string str = e.Key.ToString();
 
-            foreach(var ch in str)
+            foreach (var ch in str)
             {
                 if (char.IsDigit(ch))
                 {
@@ -106,10 +106,10 @@ namespace Taschenrechner
 
                     textLabel.Text += ch;
                 }
-            }         
+            }
 
-            
-            if(Symbols.Contains(str))
+
+            if (Symbols.Contains(str))
             {
                 logger.Info("Нажатие на кнопку клавиатуры: " + str);
 
@@ -128,8 +128,8 @@ namespace Taschenrechner
                         textLabel.Text += '/';
                         break;
                 }
-            }   
-            if(e.Key == Key.Enter)
+            }
+            if (e.Key == Key.Enter)
             {
                 try
                 {
@@ -143,12 +143,34 @@ namespace Taschenrechner
                     logger.Error(ex.ToString());
                 }
             }
-            if(e.Key == Key.Back)
+            if (e.Key == Key.Back)
             {
                 logger.Info("Нажатие на кнопку клавиатуры: Backspace");
                 textLabel.Text = "";
             }
         }
+
+        /// <summary>
+        /// Кнопка закрытия приложения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            logger.Info("Приложение закрывается!");
+            this.Close();
+        }
+
+        /// <summary>
+        /// Возможность перемещать окно не за рамку
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+            
 
         //private void Button2_Click(object sender, RoutedEventArgs e)
         //{
