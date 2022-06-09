@@ -31,6 +31,7 @@ namespace Taschenrechner
                 builder.ForLogger().FilterLevel(LogLevel.Info).WriteToConsole("${longdate} ${level} ${message} ${exception} ");
                 builder.ForLogger().FilterMinLevel(LogLevel.Error).WriteToFile("${basedir}/logs/${shortdate}.log", "${longdate} ${level} ${message} ${exception} ");
             });
+
             InitializeComponent();
             
             logger.Info("Приложение запущено!");
@@ -59,6 +60,7 @@ namespace Taschenrechner
             string str = (string)((Button)e.OriginalSource).Content;
 
             logger.Info("Нажатие на кнопку: " + str);
+            
 
             if (str == "AC")
                 textLabel.Text = "";
