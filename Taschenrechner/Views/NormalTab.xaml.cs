@@ -18,9 +18,9 @@ namespace Taschenrechner.Views
     /// <summary>
     /// Логика взаимодействия для Normal.xaml
     /// </summary>
-    public partial class Normal : UserControl
+    public partial class NormalTab : UserControl
     {
-        public Normal()
+        public NormalTab()
         {
             InitializeComponent();
             this.DataContext = this;

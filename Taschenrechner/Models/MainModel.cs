@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Taschenrechner.Models
 {
-    internal class MainModel
+    public class MainModel
     {
         //Логгирование событий
         static readonly Logger logger = LogManager.GetCurrentClassLogger();

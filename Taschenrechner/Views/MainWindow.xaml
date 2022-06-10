@@ -24,7 +24,7 @@
         <TabControl ItemsSource="{Binding Tabs}" Grid.Row="1">
             <TabControl.Resources>
                 <DataTemplate DataType="{x:Type viewModel:NormalTabVM}">
-                    <view:Normal/>
+                    <view:NormalTab/>
                 </DataTemplate>
             </TabControl.Resources>
             <TabControl.ItemTemplate>

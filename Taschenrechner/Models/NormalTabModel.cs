@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace Taschenrechner.Models
 {
-    internal class NormalTabModel
+    public class NormalTabModel
     {
+        public string Name { get; set; }
+
+        public NormalTabModel(string name)
+        {
+            Name = name;
+        }
+
         /// <summary>
         /// Нажатие на кнопки интерфейса калькулятора
         /// </summary>

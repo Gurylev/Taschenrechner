@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Taschenrechner.Models
 {
-    internal class TabModel
+    public class TabModel
     {
     }
 }

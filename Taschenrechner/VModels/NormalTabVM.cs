@@ -9,7 +9,13 @@ namespace Taschenrechner.VModels
 {
     public class NormalTabVM : TabVM
     {
-        
+        public string Name { get; set; }
+
+        public NormalTabVM(string name)
+        {
+            Name = name;
+        }
+
     }
 
    

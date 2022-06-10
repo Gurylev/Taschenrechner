@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
-
+using Taschenrechner.VModels;
 
 namespace Taschenrechner.VModels
 {
@@ -16,15 +16,15 @@ namespace Taschenrechner.VModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        public NormalTabVM NormalTabvm {get; set;}
         public MainWindowVM()
         {
+
             Tabs = new ObservableCollection<ITabItemVM>();
+            NormalTabvm = new NormalTabVM("Обычный");
+            Tabs.Add(NormalTabvm);
         }
         public ICollection<ITabItemVM> Tabs { get; }
-
-
-
-
 
 
     }    
