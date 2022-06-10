@@ -4,17 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
-
+using Taschenrechner.MVVMBase;
 
 namespace Taschenrechner.VModels
 {
-    public class TabVM : ITabItemVM, INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+    public class TabVM : VMBase, ITabItemVM
+    {       
         public string Header { get; set; }
     }
     public interface ITabItemVM

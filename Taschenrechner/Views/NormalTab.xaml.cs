@@ -23,7 +23,6 @@ namespace Taschenrechner.Views
         public NormalTab()
         {
             InitializeComponent();
-            this.DataContext = this;
         }
     }
 }

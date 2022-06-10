@@ -8,5 +8,6 @@ namespace Taschenrechner.Models
 {
     public class TabModel
     {
+        public string Header { get; set; }       
     }
 }

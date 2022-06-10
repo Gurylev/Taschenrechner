@@ -22,27 +22,9 @@ namespace Taschenrechner.Views
     /// </summary>
     public partial class MainWindow : Window
     {   
-        /// <summary>
-        /// Попытки MVVM
-        /// </summary>
-        private VModels.MainWindowVM _mainvm;
-        public VModels.MainWindowVM MainVM
-        {
-            get
-            {
-                return _mainvm;
-            }
-            set 
-            { 
-                _mainvm = value;
-            }
-        }
-
         public MainWindow()
         {
-            //Инициализация основного VM
-            MainVM = new VModels.MainWindowVM();
-            DataContext = MainVM;                                  
+            InitializeComponent();
         }
 
         /// <summary>
