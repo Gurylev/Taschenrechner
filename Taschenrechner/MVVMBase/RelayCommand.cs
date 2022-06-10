@@ -9,7 +9,6 @@ namespace Taschenrechner.MVVMBase
 {
     public class RelayCommand<T> : ICommand
     {
-        // private fields
         readonly Action<T> _execute = null;
         readonly Predicate<T> _canExecute = null;
 
@@ -26,8 +25,6 @@ namespace Taschenrechner.MVVMBase
             this._canExecute = canExecute;
         }
 
-        // CommandManager.RequerySuggested event is raised whenever the CommandManager thinks that something has changed
-        // and that will affect the ability of commands to execute. For example this might be a change of focus.
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }

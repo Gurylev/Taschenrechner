@@ -14,9 +14,6 @@ namespace Taschenrechner.VModels
     public class NormalTabVM : TabVM
     {
         private NormalTabModel _normaltab;
-
-        public string Header { get; set; }
-        public string textLabel { get; set; }
         public NormalTabVM(NormalTabModel normaltab)
         {
             _normaltab = normaltab;
@@ -35,7 +32,9 @@ namespace Taschenrechner.VModels
             //logger.Info("Нажатие на кнопку: " + str);
 
             if (cmd == "AC")
+            {
                 textLabel = "";
+            }
             else if (cmd == "=")
             {
                 try
@@ -49,72 +48,10 @@ namespace Taschenrechner.VModels
                 }
             }
             else
+            {
                 textLabel += cmd;
+            }
             this.RaisePropertyChanged("textLabel");
-        }
-
-        /// <summary>
-        /// Ввод с клавиатуры
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void Window_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    string[] Symbols = new string[] { "Add", "Subtract", "Divide", "Multiply" };
-        //    string str = e.Key.ToString();
-
-        //    foreach (var ch in str)
-        //    {
-        //        if (char.IsDigit(ch))
-        //        {
-        //            logger.Info("Нажатие на кнопку клавиатуры: " + ch);
-
-        //            textLabel.Text += ch;
-        //        }
-        //    }
-
-
-        //    if (Symbols.Contains(str))
-        //    {
-        //        logger.Info("Нажатие на кнопку клавиатуры: " + str);
-
-        //        switch (str)
-        //        {
-        //            case "Add":
-        //                textLabel.Text += '+';
-        //                break;
-        //            case "Subtract":
-        //                textLabel.Text += '-';
-        //                break;
-        //            case "Multiply":
-        //                textLabel.Text += '*';
-        //                break;
-        //            case "Divide":
-        //                textLabel.Text += '/';
-        //                break;
-        //        }
-        //    }
-        //    if (e.Key == Key.Enter)
-        //    {
-        //        try
-        //        {
-        //            logger.Info("Нажатие на кнопку клавиатуры: Enter");
-
-        //            string value = new DataTable().Compute(textLabel.Text, null).ToString();
-        //            textLabel.Text = value;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            logger.Error(ex.ToString());
-        //        }
-        //    }
-        //    if (e.Key == Key.Back)
-        //    {
-        //        logger.Info("Нажатие на кнопку клавиатуры: Backspace");
-        //        textLabel.Text = "";
-        //    }
-        //}
+        }       
     }
-
-
 }

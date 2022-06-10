@@ -12,8 +12,7 @@ namespace Taschenrechner.Models
     {
         public ObservableCollection<TabModel> tabs { get; set; }
         public MainModel()
-        {
-                     
+        {                     
         }       
     }
 }

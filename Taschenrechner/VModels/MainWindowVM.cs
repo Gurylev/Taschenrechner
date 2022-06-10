@@ -8,14 +8,16 @@ using System.ComponentModel;
 using NLog;
 using Taschenrechner.MVVMBase;
 using Taschenrechner.Models;
+using System.Windows.Input;
+using System.Windows;
 
 namespace Taschenrechner.VModels
 {
     public class MainWindowVM : VMBase
     {
-        public 
         //Логгирование событий
         static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         public MainWindowVM()
         {
             //Конфигурирование NLog
@@ -50,20 +52,21 @@ namespace Taschenrechner.VModels
             Tabs.Add(new NormalTabVM(new NormalTabModel("Обычный")));
             Tabs.Add(new EngineerTabVM(new EngineerTabModel("Инженерный")));
 
+            ClickCommand = new RelayCommand<object>(CloseCommand);
+
         }
         public ICollection<TabVM> Tabs { get; }
+        public ICommand ClickCommand { get; }
 
-        ///// <summary>
-        ///// Кнопка закрытия приложения
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void Close_Click(object sender, RoutedEventArgs e)
-        //{
-        //    logger.Info("Приложение закрывается!");
-        //    this.Close();
-        //}
-
-
+        /// <summary>
+        /// Кнопка закрытия приложения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CloseCommand(object sender)
+        {
+            logger.Info("Приложение закрывается!");
+            Application.Current.MainWindow.Close();
+        }
     }
 }

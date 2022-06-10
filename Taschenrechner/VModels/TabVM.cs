@@ -8,12 +8,9 @@ using Taschenrechner.MVVMBase;
 
 namespace Taschenrechner.VModels
 {
-    public class TabVM : VMBase, ITabItemVM
+    public class TabVM : VMBase
     {       
         public string Header { get; set; }
-    }
-    public interface ITabItemVM
-    {
-        string Header { get; set; }
-    }
+        public string textLabel { get; set; }
+    }   
 }
