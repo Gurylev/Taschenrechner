@@ -10,6 +10,9 @@ using Taschenrechner.MVVMBase;
 using Taschenrechner.Models;
 using System.Windows.Input;
 using System.Windows;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
+using EngineerMode.Models;
 
 namespace Taschenrechner.VModels
 {
@@ -17,6 +20,8 @@ namespace Taschenrechner.VModels
     {
         //Логгирование событий
         static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
+        private CompositionContainer _container;
 
         public MainWindowVM()
         {
@@ -26,36 +31,15 @@ namespace Taschenrechner.VModels
                 builder.ForLogger().FilterMinLevel(LogLevel.Error).WriteToFile("${basedir}/logs/${shortdate}.log", "${longdate} ${level} ${message} ${exception} ");
             });
 
-            #region Инициализация всех кнопок
-
-            //foreach (UIElement el in Normal.Children)
-            //{
-            //    if (el is Button)
-            //    {
-            //        ((Button)el).Click += Button_Click;
-            //    }
-            //}
-
-            //foreach (UIElement el2 in Engineer.Children)
-            //{
-            //    if (el2 is Button)
-            //    {
-            //        ((Button)el2).Click += Button2_Click;
-            //    }
-            //}
-
-            #endregion
-
             logger.Info("Приложение запущено!");
 
-            Tabs = new ObservableCollection<TabVM>();
+            Tabs = new ObservableCollection<ITabVM>();
             Tabs.Add(new NormalTabVM(new NormalTabModel("Обычный"), logger));
-            Tabs.Add(new EngineerTabVM(new EngineerTabModel("Инженерный"), logger));
-
+            Tabs.Add(new Enginer(new EngineerTabModel("Инженерный"), logger));
             ClickCommand = new RelayCommand<object>(CloseCommand);
 
         }
-        public ICollection<TabVM> Tabs { get; }
+        public ICollection<ITabVM> Tabs { get; }
         public ICommand ClickCommand { get; }
 
         /// <summary>
@@ -69,5 +53,17 @@ namespace Taschenrechner.VModels
             logger.Info("Приложение закрывается!");
             win.Close();
         }
+
+        /// <summary>
+        /// Костыльно, но с MEF не разобрался
+        /// </summary>
+        public class Enginer : EngineerMode.VModels.EngineerTabVM, ITabVM
+        {
+            public Enginer(EngineerTabModel engineertab, Logger log) : base(engineertab, log)
+            {
+            }
+        }
+
+
     }
 }

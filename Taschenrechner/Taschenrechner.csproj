@@ -25,6 +25,13 @@
 
   <ItemGroup>
     <PackageReference Include="NLog" Version="5.0.0" />
+    <PackageReference Include="System.ComponentModel.Composition" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="EngineerMode">
+      <HintPath>..\EngineerMode\bin\Debug\net6.0-windows\EngineerMode.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
@@ -46,11 +53,5 @@
     <None Update="Resources\APPIcon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Views\Engineer.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
   </ItemGroup>		
 </Project>

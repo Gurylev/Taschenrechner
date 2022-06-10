@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EngineerMode.Models
 {
-    internal class EngineerTabModel
+    public class EngineerTabModel
     {
         public string Header { get; set; }
         public EngineerTabModel(string Header)

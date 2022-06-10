@@ -6,6 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:Taschenrechner.VModels"
         xmlns:view="clr-namespace:Taschenrechner.Views"
+        xmlns:viewEngineer="clr-namespace:EngineerMode.Views;assembly=EngineerMode"
+        xmlns:viewModelEngineer="clr-namespace:EngineerMode.VModels;assembly=EngineerMode"
         xmlns:local="clr-namespace:Taschenrechner"
         mc:Ignorable="d"
         Title="Taschenrechner" Height="400" Width="500" Icon="/Resources/APPIcon.ico" Background="White" BorderBrush="White" OpacityMask="Black" WindowStyle="None" WindowStartupLocation="CenterScreen" >
@@ -26,8 +28,8 @@
                 <DataTemplate DataType="{x:Type viewModel:NormalTabVM}">
                     <view:NormalTab/>
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type viewModel:EngineerTabVM}">
-                    <view:Engineer/>
+                <DataTemplate DataType="{x:Type viewModelEngineer:EngineerTabVM}">
+                    <viewEngineer:Engineer/>
                 </DataTemplate>
             </TabControl.Resources>
             <TabControl.ItemTemplate>

@@ -11,12 +11,12 @@ using System.Windows.Input;
 
 namespace EngineerMode.VModels
 {
-    internal class EngineerTabVM : VMBase
+    public class EngineerTabVM : VMBase
     {
         public Logger Log { get; set; }
         public string Header { get; set; }
         public string textLabel { get; set; }
-        private EngineerTabModel _engineertab;
+        public EngineerTabModel _engineertab;
         public EngineerTabVM(EngineerTabModel engineertab, Logger log)
         {
             _engineertab = engineertab;
@@ -31,7 +31,7 @@ namespace EngineerMode.VModels
         /// Нажатие на кнопки интерфейса калькулятора неженерный вид
         /// </summary>
         /// <param name="obj"></param>
-        private void ClickBtn(string cmd)
+        public void ClickBtn(string cmd)
         {
             Log.Info("Нажатие на кнопку: " + cmd);
 
