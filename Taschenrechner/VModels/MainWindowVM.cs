@@ -50,7 +50,7 @@ namespace Taschenrechner.VModels
 
             Tabs = new ObservableCollection<TabVM>();
             Tabs.Add(new NormalTabVM(new NormalTabModel("Обычный"), logger));
-            Tabs.Add(new EngineerTabVM(new EngineerTabModel("Инженерный")));
+            Tabs.Add(new EngineerTabVM(new EngineerTabModel("Инженерный"), logger));
 
             ClickCommand = new RelayCommand<object>(CloseCommand);
 
