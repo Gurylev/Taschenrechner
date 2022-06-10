@@ -33,7 +33,7 @@ namespace Taschenrechner.Views
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
+        {   
             this.DragMove();
         }
     }

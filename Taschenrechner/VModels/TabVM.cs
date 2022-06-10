@@ -15,6 +15,5 @@ namespace Taschenrechner.VModels
     public interface ITabItemVM
     {
         string Header { get; set; }
-
     }
 }

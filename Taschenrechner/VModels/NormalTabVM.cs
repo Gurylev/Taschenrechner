@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Taschenrechner.Models;
+using Taschenrechner.MVVMBase;
+using System.Windows.Controls;
+using System.Data;
 
 namespace Taschenrechner.VModels
 {
@@ -12,41 +16,42 @@ namespace Taschenrechner.VModels
         private NormalTabModel _normaltab;
 
         public string Header { get; set; }
+        public string textLabel { get; set; }
         public NormalTabVM(NormalTabModel normaltab)
         {
             _normaltab = normaltab;
             Header = normaltab.Header;
+            ClickCommand = new RelayCommand<string>(ClickBtn);
         }
+
+        public ICommand ClickCommand { get; }
 
         /// <summary>
         /// Нажатие на кнопки интерфейса калькулятора
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    string str = (string)((Button)e.OriginalSource).Content;
+        /// <param name="obj"></param>
+        private void ClickBtn(string cmd)
+        {
+            //logger.Info("Нажатие на кнопку: " + str);
 
-        //    logger.Info("Нажатие на кнопку: " + str);
-
-
-        //    if (str == "AC")
-        //        textLabel.Text = "";
-        //    else if (str == "=")
-        //    {
-        //        try
-        //        {
-        //            string value = new DataTable().Compute(textLabel.Text, null).ToString();
-        //            textLabel.Text = value;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            logger.Error(ex.ToString());
-        //        }
-        //    }
-        //    else
-        //        textLabel.Text += str;
-        //}
+            if (cmd == "AC")
+                textLabel = "";
+            else if (cmd == "=")
+            {
+                try
+                {
+                    string value = new DataTable().Compute(textLabel, null).ToString();
+                    textLabel = value;
+                }
+                catch (Exception ex)
+                {
+                   // logger.Error(ex.ToString());
+                }
+            }
+            else
+                textLabel += cmd;
+            this.RaisePropertyChanged("textLabel");
+        }
 
         /// <summary>
         /// Ввод с клавиатуры
