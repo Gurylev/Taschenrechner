@@ -49,7 +49,7 @@ namespace Taschenrechner.VModels
             logger.Info("Приложение запущено!");
 
             Tabs = new ObservableCollection<TabVM>();
-            Tabs.Add(new NormalTabVM(new NormalTabModel("Обычный")));
+            Tabs.Add(new NormalTabVM(new NormalTabModel("Обычный"), logger));
             Tabs.Add(new EngineerTabVM(new EngineerTabModel("Инженерный")));
 
             ClickCommand = new RelayCommand<object>(CloseCommand);

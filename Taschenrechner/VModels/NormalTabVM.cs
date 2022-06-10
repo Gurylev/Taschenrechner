@@ -8,17 +8,20 @@ using Taschenrechner.Models;
 using Taschenrechner.MVVMBase;
 using System.Windows.Controls;
 using System.Data;
+using NLog;
 
 namespace Taschenrechner.VModels
 {
     public class NormalTabVM : TabVM
     {
+        public Logger Log { get; set; }
         private NormalTabModel _normaltab;
-        public NormalTabVM(NormalTabModel normaltab)
+        public NormalTabVM(NormalTabModel normaltab, Logger log)
         {
             _normaltab = normaltab;
             Header = normaltab.Header;
             ClickCommand = new RelayCommand<string>(ClickBtn);
+            Log= log;
         }
 
         public ICommand ClickCommand { get; }
@@ -29,7 +32,7 @@ namespace Taschenrechner.VModels
         /// <param name="obj"></param>
         private void ClickBtn(string cmd)
         {
-            //logger.Info("Нажатие на кнопку: " + str);
+            Log.Info("Нажатие на кнопку: " + cmd);
 
             if (cmd == "AC")
             {
@@ -44,7 +47,7 @@ namespace Taschenrechner.VModels
                 }
                 catch (Exception ex)
                 {
-                   // logger.Error(ex.ToString());
+                    Log.Error(ex.ToString());
                 }
             }
             else
