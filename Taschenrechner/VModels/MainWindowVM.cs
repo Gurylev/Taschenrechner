@@ -48,6 +48,8 @@ namespace Taschenrechner.VModels
 
             Tabs = new ObservableCollection<TabVM>();
             Tabs.Add(new NormalTabVM(new NormalTabModel("Обычный")));
+            Tabs.Add(new EngineerTabVM(new EngineerTabModel("Инженерный")));
+
         }
         public ICollection<TabVM> Tabs { get; }
 

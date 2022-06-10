@@ -26,9 +26,12 @@
                 <DataTemplate DataType="{x:Type viewModel:NormalTabVM}">
                     <view:NormalTab/>
                 </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:EngineerTabVM}">
+                    <view:Engineer/>
+                </DataTemplate>
             </TabControl.Resources>
             <TabControl.ItemTemplate>
-                <DataTemplate DataType="{x:Type viewModel:NormalTabVM}">
+                <DataTemplate DataType="{x:Type viewModel:TabVM}">
                     <TextBlock Text="{Binding Header}"/>
                 </DataTemplate>
             </TabControl.ItemTemplate>            
