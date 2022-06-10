@@ -20,7 +20,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Label HorizontalAlignment="Left" FontSize="15" FontWeight="Bold" FontFamily="Verdana">Калькулятор</Label>
-        <Button Grid.Row="0" x:Name="Close" Margin="450,0,0,0" Height="30" Width="30" Panel.ZIndex="100" Foreground="Red" Command="{Binding ClickCommand}" CommandParameter="{Binding}">X</Button>
+        <Button Grid.Row="0" x:Name="Close" Margin="450,0,0,0" Height="30" Width="30" Panel.ZIndex="100" Foreground="Red" Command="{Binding ClickCommand}" CommandParameter="{Binding ElementName=MainWindowInstance}">X</Button>
         <TabControl ItemsSource="{Binding Tabs}" Grid.Row="1">
             <TabControl.Resources>
                 <DataTemplate DataType="{x:Type viewModel:NormalTabVM}">

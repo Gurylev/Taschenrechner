@@ -65,8 +65,9 @@ namespace Taschenrechner.VModels
         /// <param name="e"></param>
         private void CloseCommand(object sender)
         {
+            Window win = sender as Window;
             logger.Info("Приложение закрывается!");
-            Application.Current.MainWindow.Close();
+            win.Close();
         }
     }
 }
