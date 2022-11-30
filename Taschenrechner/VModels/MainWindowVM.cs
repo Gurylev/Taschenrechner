@@ -32,6 +32,8 @@ namespace Taschenrechner.VModels
             });
 
             logger.Info("Приложение запущено!");
+
+
             Tabs = new ObservableCollection<ITabVM>();
             Tabs.Add(new NormalTabVM(new NormalTabModel("Обычный"), logger));
             Tabs.Add(new Enginer(new EngineerTabModel("Инженерный"), logger));
