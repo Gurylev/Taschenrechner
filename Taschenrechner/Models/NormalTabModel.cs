@@ -11,6 +11,8 @@ namespace Taschenrechner.Models
         public NormalTabModel(string Header)
         {
            this.Header = Header;
+
+
         }        
     }
 }
