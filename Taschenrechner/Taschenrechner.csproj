@@ -29,9 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="EngineerMode">
-      <HintPath>..\EngineerMode\bin\Debug\net6.0-windows\EngineerMode.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\EngineerMode\EngineerMode.csproj" />
   </ItemGroup>
 
   <ItemGroup>
